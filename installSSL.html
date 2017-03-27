@@ -1,7 +1,7 @@
 How to install an SSL from Godaddy on your Node.js server with Amazon Web Services 
 1.	SSH into your server. (example: ssh –i nameofkey.pem ubuntu@111.11.11.11)
 2.	Type: Cd /etc/nginx/ssl (change directory here)
-3.	Type: openssl req -new -newkey rsa:2048 -nodes -keyout websitename.key -out websitename.csr (		where websitename = name or whatever you want the name to be)
+3.	Type: openssl req -new -newkey rsa:2048 -nodes -keyout websitename.key -out websitename.csr (where websitename = name or whatever you want the name to be)
 4.	Go through questions:
 	a.	Country Name (2 letter code) [AU]: US (for United States)
 	b.	State or Province Name (full name) [Some-State]:CA (for California)
@@ -12,18 +12,18 @@ How to install an SSL from Godaddy on your Node.js server with Amazon Web Servic
 	g.	Email Address []: youremail@gmail.com
 	h.	Please enter the following 'extra' attributes to be sent with your certificate request: challenge password[]: securepassword
 5.	Type: vim websitename.csr
-6.	Copy all inside data including the ----- BEGIN CERTIFICATE REQUEST ----- and -----END CERTIFICATE 	  REQUEST -----, not just the key inside.
+6.	Copy all inside data including the ----- BEGIN CERTIFICATE REQUEST ----- and -----END CERTIFICATE REQUEST -----, not just the key inside.
 7.	Purchase an SSL certificate from Godaddy in this case.
 8.	Go to your products.
 9.	Click the plus next to SSL Certificates.
 10.	Click on Manage.
 11.	Enter in your CSR and validate the CSR.
-12.	Once CSR is validated and you are approved for HTTPS on YOUR website, Download the certificate by 	  selecting Apache as server type and then hitting the download button on the download page.
-13.	Get the files inside the zip file and move them into the destination of /etc/nginx/ssl (in this 	case I made a git repository with the 2 files inside and and cloned the repository at this 			destination)
+12.	Once CSR is validated and you are approved for HTTPS on YOUR website, Download the certificate by selecting Apache as server type and then hitting the download button on the download page.
+13.	Get the files inside the zip file and move them into the destination of /etc/nginx/ssl (in this case I made a git repository with the 2 files inside and and cloned the repository at this 			destination)
 14.	Once that’s complete you should have the .key, the .csr, and the 2 new files with a .crt extension
-15.	Rename the first one from the folder to websitename.com.crt and the second one to intermediate.		com (where websitename = your website name or name you want to use)
+15.	Rename the first one from the folder to websitename.com.crt and the second one to intermediate.com (where websitename = your website name or name you want to use)
 16.	Type: sudo su, to become a super user so you can run the next command.
-17.	Run the command: cat websitename.com.crt intermediate.crt > websitename.com.chained.crt (this 		will create a single chained certificate)
+17.	Run the command: cat websitename.com.crt intermediate.crt > websitename.com.chained.crt (this will create a single chained certificate)
 18.	Type: cd /etc/nginx/sites-available
 19.	Type: vim name of file inside this folder such as website_name
 20.	Put the following inside this area:

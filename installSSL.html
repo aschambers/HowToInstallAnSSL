@@ -19,7 +19,7 @@ How to install an SSL from Godaddy on your Node.js server with Amazon Web Servic
 10.	Click on Manage.
 11.	Enter in your CSR and validate the CSR.
 12.	Once CSR is validated and you are approved for HTTPS on YOUR website, Download the certificate by selecting Apache as server type and then hitting the download button on the download page.
-13.	Get the files inside the zip file and move them into the destination of /etc/nginx/ssl (in this case I made a git repository with the 2 files inside and and cloned the repository at this 			destination)
+13.	Get the files inside the zip file and move them into the destination of /etc/nginx/ssl (in this case I made a git repository with the 2 files inside and and cloned the repository at this destination)
 14.	Once that’s complete you should have the .key, the .csr, and the 2 new files with a .crt extension
 15.	Rename the first one from the folder to websitename.com.crt and the second one to intermediate.com (where websitename = your website name or name you want to use)
 16.	Type: sudo su, to become a super user so you can run the next command.
@@ -46,5 +46,6 @@ How to install an SSL from Godaddy on your Node.js server with Amazon Web Servic
 			ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'; 
 		} 
 		(Note: This will install the SSL certificate on your server.
-22.	Type: sudo service nginx restart (restarts the nginx server and applies changes to the file you just made.
-23.	Check to see if your site is now using https://  and that http:// or websitename.com requests redirect to https://websitename.com and you are done!
+22.	Type: sudo service nginx restart (restarts the nginx server and applies changes to the file you just made).
+23.	Check to see if your site is now using https://  and that http:// or websitename.com requests redirect to https://websitename.com.
+24.     Lastly, make sure all links (CDNs, etc) are https:// not http://, as no http:// links will work and could result in features not working.
